@@ -1,35 +1,78 @@
 const model = require('../model/index');
 
 exports.login = async (req, res) => {
-  console.log(req.body);
   const {
     email,
     password
   } = req.body;
 
-  if (!req.body || !req.body.email || !req.body.password) {
-    res.status(422).json({
-      message: 'yo! you miss`n some stuff!'  
-    });
-    return;
-  }
+  try {
+    if (!req.body || !req.body.email || !req.body.password) {
+      res.status(422).json({
+        message: 'yo! you miss`n some stuff!'
+      });
+      return;
+    }
 
-  const user = await model.user.getUser(email);
+    const user = await model.user.getUserByEmail(email);
 
-  if (!user) {
+    if (!user) {
+      res.status(400).json({
+        message: 'hey man, you sent me the wrong email.'
+      });
+      return;
+    }
+    if (user.password !== password) {
+      res.status(400).json({
+        message: 'hey lady, you sent me the wrong password.'
+      });
+      return;
+    }
+
+    delete user.password;
+    res.status(200).json(user)
+  } catch (error) {
     res.status(400).json({
-      message: 'hey man, you sent me the wrong email.'
+      message: 'Error, please try again' + error.message
     });
-    return;
   }
-  if (user.password !== password) {
+
+}
+
+
+exports.changePassword = async (req, res) => {
+  const {
+    email,
+    currentPassword,
+    newPassword
+  } = req.body;
+
+  try {
+    if (!req.body || !req.body.email || !req.body.currentPassword || !req.body.newPassword) {
+      res.status(422).json({
+        message: 'yo! you miss`n some stuff!'
+      });
+      return;
+    }
+    // get user by email
+    const user = await model.user.getUserByEmail(email);
+
+    if (user.password !== currentPassword) {
+      res.status(400).json({
+        message: 'hey lady, please check your current password.'
+      });
+      return;
+    }
+    //  change password
+    const isPasswordChanged = await model.user.changePassword(email, newPassword)
+    if (isPasswordChanged) {
+      res.status(200).json({
+        message: 'you are successfully changed your password'
+      })
+    }
+  } catch (error) {
     res.status(400).json({
-      message: 'hey lady, you sent me the wrong password.'
+      message: 'Error changing password' + error.message
     });
-    return;
   }
-
-  delete user.password;
-  res.status(200).json(user)
-
 }
