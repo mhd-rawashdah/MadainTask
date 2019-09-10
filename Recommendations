@@ -1,0 +1,30 @@
+Recomendations:
+This is a list of recommendations to make this project better 
+(UI, UX, Performance, Security, Architecture, Bug fix, New Feature, ...etc )
+
+// Please make your recommendations as clear as possible with only a few sentences 
+
+// backend
+1. divide backend into three modules (api, controller, model) into src
+    - api contain the route
+    - controller contain api logic
+    - model contain dummy users with functions to get user , changePassword
+2. use JWT for authentication(generate jwt for each user)
+
+3. hash the password for user
+
+4. make api for changing password
+
+// frontend
+
+1. divide app into views (login, profile)
+
+2. add routes for app
+
+3. activate change password functionality 
+
+4. create changePasswordController
+
+5. check user inputs before calling api
+
+6. fix login and profile design
