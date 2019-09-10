@@ -5,8 +5,8 @@ This is a list of recommendations to make this project better
 // Please make your recommendations as clear as possible with only a few sentences 
 
 // backend
-1. divide backend into three modules (api, controller, model) into src
-    - api contain the route
+1. divide backend into three modules (api, controller, model) into src with refactor login Api logic
+    - api contain the route 
     - controller contain api logic
     - model contain dummy users with functions to get user , changePassword
 2. use JWT for authentication(generate jwt for each user)
