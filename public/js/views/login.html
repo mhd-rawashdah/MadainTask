@@ -1,0 +1,17 @@
+<div class="panel panel-default login-container">
+  <div class="panel-heading">Login</div>
+  <div class="panel-body">
+    <div ng-show="errorMessage" class="alert alert-warning">
+      {{errorMessage}}
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="text" class="form-control" type="email" required id="email" ng-model="email" placeholder="name@domain.com">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" required id="password" ng-model="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="login()">Login</button>
+  </div>
+</div>

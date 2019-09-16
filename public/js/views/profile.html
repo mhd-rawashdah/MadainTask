@@ -1,0 +1,38 @@
+<div class="profile">
+    <div class="title">
+      <h3>Welcome Mohammad</h3>
+      <!-- <h1>Welcome {{user.name}}</h1> -->
+    </div>
+    <div class="profile-container">
+      <div class="profile-image">
+        <img
+          src="https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg" />
+      </div>
+      <div class="profile-info">
+        <span class="desc">Name : {{user.name}}</span>
+        <span class="desc">Email : {{user.email}}</span>
+        <span class="desc">Phone number : {{user.phoneNumber}}</span>
+      </div>
+    </div>
+  
+    <a href="#" ng-click="newPasswordMode = true" ng-hide="newPasswordMode">Change Password</a>
+    <div ng-show="newPasswordMode" class="change-password">
+      <div>
+        <label for="currentPassword">Current Password</label>
+        <input type="password" id="currentPassword" ng-model="currentPassword" placeholder="Current Password">
+      </div>
+      <div>
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" ng-model="newPassword" placeholder="New Password">
+      </div>
+      <div>
+        <label for="re-password">re-password</label>
+        <input type="password" id="re-password" ng-model="newPassword" placeholder="Repeat Password">
+      </div>
+      <button class="btn btn-default" ng-click="changePassword()">Change</button>
+    </div>
+  
+    <div ng-show="successMessage" class="alert alert-warning">
+      {{successMessage}}
+    </div>
+  </div>

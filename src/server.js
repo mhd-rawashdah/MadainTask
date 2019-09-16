@@ -39,11 +39,19 @@ passport.use(
 
 app.use('/api/', authApi);
 
-
-var serve = staticFiles('public/', {
-  'index': ['index.html']
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
-app.use(serve);
+
+
+var serve1 = staticFiles('public/', {
+  'index': ['index.html'],
+});
+
+
+app.use(serve1);
 
 
 app.listen(3000);

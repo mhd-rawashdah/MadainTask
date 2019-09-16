@@ -1,0 +1,41 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #f8f8f8;
+}
+.profile-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.profile-image {
+    flex: 1;
+    display: flex;
+    align-content: flex-start;
+}
+.profile-image img {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+}
+
+.profile-info {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info .desc {
+    margin: 10px 20px;
+}
+
+.change-password {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    justify-content: space-between;
+}
