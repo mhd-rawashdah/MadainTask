@@ -1,0 +1,44 @@
+<div class="profile">
+  <div class="title">
+    <h3>Welcome {{user.name}}</h3>
+  </div>
+  <div class="profile-container">
+    <div class="profile-image">
+      <img
+        ng-src="{{user.profilePic}}" />
+    </div>
+    <div class="profile-info">
+      <span class="desc">Name : {{user.name}}</span>
+      <span class="desc">Email : {{user.email}}</span>
+      <span class="desc">Phone number : {{user.phone}}</span>
+    </div>
+  </div>
+
+  <button class="btn btn-default" ng-click="newPasswordMode = true" ng-hide="newPasswordMode">Change Password</button>
+  <div ng-show="newPasswordMode" class="change-password">
+      <form class="panel-body" name="changePasswordForm">
+          <div ng-show="message" class="alert alert-warning">
+            {{message}}
+          </div>
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input  class="form-control" type="password" required id="currentPassword" ng-model="currentPassword" placeholder="current password">
+          </div>
+          <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input class="form-control" type="password" required id="newPassword" ng-model="newPassword" placeholder="new password Password">
+          </div>
+          <div class="form-group">
+              <label for="rePassword">Repeat Password</label>
+              <input  class="form-control" type="password" required id="rePassword" ng-model="rePassword" placeholder="Repeat Password">
+          </div>
+          <button type="submit" ng-disabled="!changePasswordForm.$valid" class="btn btn-primary" ng-click="changePassword()">Submit</button>
+          <button type="reset" class="btn btn-default" ng-click="newPasswordMode = false">Cancel</button>
+        </form>
+    
+  </div>
+
+  <div ng-show="successMessage" class="alert alert-warning">
+    {{successMessage}}
+  </div>
+</div>

@@ -1,4 +1,10 @@
 .login-container {
-    width: 31rem;
+    width: 32rem;
     margin: 100px auto;
+}
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(81, 74, 180);
+    text-align: center;
 }

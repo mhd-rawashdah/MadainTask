@@ -6,6 +6,7 @@ const authApi = require("./api/auth")
 const passport = require("passport");
 const Strategy = require("passport-http-bearer").Strategy;
 const model = require('./model/index');
+const path = require('path');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({
 
 // parse application/json
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname, '../public')));
 // log all api traffic to console
 app.use('api/*', req => {
   console.log(req);
@@ -37,22 +38,11 @@ passport.use(
   })
 );
 
+// app.use(staticFiles('public/', {
+//   'index': ['index.html'],
+// }));
+
 app.use('/api/', authApi);
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-
-var serve1 = staticFiles('public/', {
-  'index': ['index.html'],
-});
-
-
-app.use(serve1);
-
 
 app.listen(3000);
 console.log("running on http://localhost:3000");

@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
       return;
     }
 
-    const user = await model.user.getUserByEmail(email);
+    let user = await model.user.getUserByEmail(email);
 
     if (!user) {
       res.status(400).json({
@@ -29,8 +29,7 @@ exports.login = async (req, res) => {
       return;
     }
 
-    delete user.password;
-    res.status(200).json(user)
+    res.status(200).json({name: user.name, email: user.email, token: user.token, profilePic: user.profilePic, phone: user.phone})
   } catch (error) {
     res.status(400).json({
       message: 'Error, please try again' + error.message
@@ -56,7 +55,7 @@ exports.changePassword = async (req, res) => {
     }
     // get user by email
     const user = await model.user.getUserByEmail(email);
-
+    console.log(user);
     if (user.password !== currentPassword) {
       res.status(400).json({
         message: 'hey lady, please check your current password.'
@@ -64,14 +63,14 @@ exports.changePassword = async (req, res) => {
       return;
     }
     //  change password
-    const isPasswordChanged = await model.user.changePassword(email, newPassword)
+    const isPasswordChanged = await model.user.changePassword(email, newPassword);
     if (isPasswordChanged) {
       res.status(200).json({
         message: 'you are successfully changed your password'
       })
     }
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       message: 'Error changing password' + error.message
     });
   }
