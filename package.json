@@ -19,7 +19,7 @@
   "homepage": "https://github.com/DanielHindi/makeMeBetter#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "nodemon": "^1.19.2",
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
